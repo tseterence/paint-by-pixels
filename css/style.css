@@ -23,6 +23,7 @@
 
 body {
   text-align: center;
+  background: lightgrey;
 }
 
 
@@ -41,8 +42,8 @@ footer {
 /* ADDITIONAL STYLES
 /*******************************************/
 #gridContainer {
-  width: 600px;
-  height: 600px;
+  width: 520px;
+  height: 520px;
   margin: 20px auto;
   /* border: 2px solid black; */
   display: flex;
@@ -51,4 +52,16 @@ footer {
 
 .grid {
   border: 0.5px solid black;
+  background: white;
+}
+
+@media (max-width: 480px) {
+  #gridContainer {
+    width: 320px;
+    height: 320px;
+  }
+
+  .grid {
+    border: 0.25px solid black;
+  }
 }

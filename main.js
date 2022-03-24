@@ -36,6 +36,17 @@ function getNewDim(){
     }  
 }
 
+// slider
+const slider = document.querySelector("#gridSlider")
+const output = document.querySelector("#numRows")
+output.innerText = `${slider.value}x${slider.value}`
+
+slider.oninput = function() {
+    output.innerText = `${this.value}x${this.value}`;
+}
+
+
+
 function newCanvas(){
     clearGrid()
     squares = getNewDim()
