@@ -1,38 +1,54 @@
 const container = document.querySelector("#gridContainer")
 const containerDim = document.querySelector("#gridContainer").clientHeight
 
+// color picker 
+const colorPicker = document.querySelector("#colorPicker")
 
-const pickerBtn = document.querySelector("#pickerColor")
-pickerBtn.addEventListener("click", () => {
+// color button
+const colorBtn = document.querySelector("#selectedColor")
+colorBtn.addEventListener("click", () => {
     colorMode = "picker"
-    pickerBtn.classList.add("active")
+    colorBtn.classList.add("active")
     rainbowBtn.classList.remove("active")
     eraserBtn.classList.remove("active")
 })
 
+// rainbow button
 const rainbowBtn = document.querySelector("#rainbowColor")
 rainbowBtn.addEventListener("click", () => {
     colorMode = "rainbow"
     rainbowBtn.classList.add("active")
-    pickerBtn.classList.remove("active")
+    colorBtn.classList.remove("active")
     eraserBtn.classList.remove("active")
 })
 
+// eraser button
 const eraserBtn = document.querySelector("#eraser")
 eraserBtn.addEventListener("click", () => {
     colorMode = "eraser"
     eraserBtn.classList.add("active")
-    pickerBtn.classList.remove("active")
+    colorBtn.classList.remove("active")
     rainbowBtn.classList.remove("active")
+})
+
+// clear grid button
+const clearBtn = document.querySelector("#clear")
+clearBtn.addEventListener("click", newGrid)
+
+// grid size slider
+const slider = document.querySelector("#gridSlider")
+const output = document.querySelector("#gridSize")
+output.innerText = `${slider.value}x${slider.value}`
+
+slider.addEventListener("change", newGrid)
+slider.addEventListener("input", function() {
+    output.innerText = `${this.value}x${this.value}`;
 })
 
 
 // default: 24x24 grid with color picker mode
 let squares = 24
 drawGrid(squares)
-
-const colorPicker = document.querySelector("#colorPicker")
-
 let colorMode = "picker"
 
 // initialize and declare mouseDown variable
@@ -64,10 +80,6 @@ function clearGrid(){
 function newGrid(){
     clearGrid()
     drawGrid(slider.value)
-    // colorMode = "picker"
-    // pickerBtn.classList.add("active")
-    // rainbowBtn.classList.remove("active")
-    // eraserBtn.classList.remove("active")
 }
 
 // paint function
@@ -90,17 +102,3 @@ function randomRGB(){
     const randomB = Math.floor(Math.random() * 256)
     return `rgb(${randomR}, ${randomG}, ${randomB})`
 }
-
-// clear grid button
-const clearBtn = document.querySelector("#clear")
-clearBtn.addEventListener("click", newGrid)
-
-// grid size slider
-const slider = document.querySelector("#gridSlider")
-const output = document.querySelector("#gridSize")
-output.innerText = `${slider.value}x${slider.value}`
-
-slider.addEventListener("change", newGrid)
-slider.addEventListener("input", function() {
-    output.innerText = `${this.value}x${this.value}`;
-})

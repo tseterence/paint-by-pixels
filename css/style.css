@@ -38,27 +38,61 @@ footer {
 
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
+}
+
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
 #gridContainer {
-  width: 480px;
-  height: 480px;
-  margin: 20px auto;
-  border: 2px solid black;
+  width: 540px;
+  height: 540px;
+  margin: 20px;
+  border: 4px solid black;
   display: flex;
   flex-wrap: wrap;
 }
 
 .grid {
-  border-top: 1px solid grey;
-  border-right: 1px solid grey;
+  outline: 1px solid grey;
   background: white;
 }
 
 .active {
-  background: grey;
+  background: #3c3c3c;
+  color: white;
 }
+
+#gridSlider {
+  width: 250px;
+}
+
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+	width: 48px;
+	height: 48px;
+  border-radius: 50%;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+  border-radius: 50%;
+}
+
 
 @media (max-width: 480px) {
   #gridContainer {
