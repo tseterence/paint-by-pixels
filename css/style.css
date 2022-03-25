@@ -42,26 +42,27 @@ footer {
 /* ADDITIONAL STYLES
 /*******************************************/
 #gridContainer {
-  width: 520px;
-  height: 520px;
+  width: 480px;
+  height: 480px;
   margin: 20px auto;
-  /* border: 2px solid black; */
+  border: 2px solid black;
   display: flex;
   flex-wrap: wrap;
 }
 
 .grid {
-  border: 0.5px solid black;
+  border-top: 1px solid grey;
+  border-right: 1px solid grey;
   background: white;
+}
+
+.active {
+  background: grey;
 }
 
 @media (max-width: 480px) {
   #gridContainer {
     width: 320px;
     height: 320px;
-  }
-
-  .grid {
-    border: 0.25px solid black;
   }
 }

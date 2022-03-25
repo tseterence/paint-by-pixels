@@ -15,12 +15,13 @@
         <main>
             <h1>Etch-A-Sketch</h1>
             <div class="buttons">
-				<div>
-					<p id="numRows"></p>
-					<input type="range" id="gridSlider" class="gridSlider" min="1" max="50" value="16">
-					<!-- <label for="gridSize">Grid Size</label> -->
-				</div>
-                <button id="clear">Clear</button>
+				<p id="gridSize"></p>
+				<p><input type="range" id="gridSlider" class="gridSlider" min="1" max="50" value="24"></p>
+				<input type="color" id="colorPicker" value="#ff0000">
+				<button id="pickerColor" class="active">Color</button>
+				<button id="rainbowColor">Rainbow</button>
+				<button id="eraser">Eraser</button>
+				<button id="clear">Clear</button>
             </div>
             <div id="gridContainer"></div>
         </main>
