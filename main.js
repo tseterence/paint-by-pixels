@@ -1,58 +1,43 @@
+// define grid container
 const container = document.querySelector("#gridContainer")
-const containerDim = document.querySelector("#gridContainer").clientHeight
+const containerDim = container.clientHeight
 
-// color picker 
+// define buttons
 const colorPicker = document.querySelector("#colorPicker")
-
-// color button
-const colorBtn = document.querySelector("#selectedColor")
-colorBtn.addEventListener("click", () => {
-    colorMode = "picker"
-    colorBtn.classList.add("active")
-    rainbowBtn.classList.remove("active")
-    eraserBtn.classList.remove("active")
-})
-
-// rainbow button
+const selectBtn = document.querySelector("#selectColor")
 const rainbowBtn = document.querySelector("#rainbowColor")
-rainbowBtn.addEventListener("click", () => {
-    colorMode = "rainbow"
-    rainbowBtn.classList.add("active")
-    colorBtn.classList.remove("active")
-    eraserBtn.classList.remove("active")
-})
-
-// eraser button
 const eraserBtn = document.querySelector("#eraser")
-eraserBtn.addEventListener("click", () => {
-    colorMode = "eraser"
-    eraserBtn.classList.add("active")
-    colorBtn.classList.remove("active")
-    rainbowBtn.classList.remove("active")
-})
-
-// clear grid button
 const clearBtn = document.querySelector("#clear")
-clearBtn.addEventListener("click", newGrid)
 
-// grid size slider
+// define grid size slider
 const slider = document.querySelector("#gridSlider")
 const output = document.querySelector("#gridSize")
-output.innerText = `${slider.value}x${slider.value}`
 
-slider.addEventListener("change", newGrid)
-slider.addEventListener("input", function() {
-    output.innerText = `${this.value}x${this.value}`;
+// add event listeners
+selectBtn.addEventListener("click", () => {
+    colorMode = "picker"
+    toggleBtns(colorMode)
 })
 
+rainbowBtn.addEventListener("click", () => {
+    colorMode = "rainbow"
+    toggleBtns(colorMode)
+})
 
-// default: 24x24 grid with color picker mode
-let squares = 24
-drawGrid(squares)
-let colorMode = "picker"
+eraserBtn.addEventListener("click", () => {
+    colorMode = "eraser"
+    toggleBtns(colorMode)
+})
 
-// initialize and declare mouseDown variable
-let mouseDown = false
+clearBtn.addEventListener("click", () => {
+    if (confirm("Are you sure you want to clear the current grid?")){
+        newGrid()
+    }
+})
+
+slider.addEventListener("change", newGrid)
+slider.addEventListener("input", () => output.innerText = `${slider.value}x${slider.value}`)
+
 document.body.onmousedown = () => mouseDown = true
 document.body.onmouseup = () => mouseDown = false
 
@@ -73,13 +58,19 @@ function drawGrid(numRows) {
 function clearGrid(){
     document.querySelectorAll(".grid").forEach((grid) => {
         grid.remove()
-    })
+    })    
 }
 
 // new grid function
 function newGrid(){
     clearGrid()
     drawGrid(slider.value)
+    if (colorMode === "eraser"){
+        colorMode = "picker"
+        selectBtn.classList.add("active")
+        rainbowBtn.classList.remove("active")
+        eraserBtn.classList.remove("active")
+    }
 }
 
 // paint function
@@ -102,3 +93,32 @@ function randomRGB(){
     const randomB = Math.floor(Math.random() * 256)
     return `rgb(${randomR}, ${randomG}, ${randomB})`
 }
+
+// toggle buttons function
+function toggleBtns(mode){
+    switch (mode){
+        case "picker":
+            selectBtn.classList.add("active")
+            rainbowBtn.classList.remove("active")
+            eraserBtn.classList.remove("active")
+            break
+        case "rainbow":
+            rainbowBtn.classList.add("active")
+            selectBtn.classList.remove("active")
+            eraserBtn.classList.remove("active")
+            break
+        case "eraser":
+            eraserBtn.classList.add("active")
+            selectBtn.classList.remove("active")
+            rainbowBtn.classList.remove("active")
+            break
+    }
+}
+
+
+// DEFAULT: 24x24 grid with color picker mode
+let squares = 24
+let colorMode = "picker"
+drawGrid(squares)
+output.innerText = `${slider.value}x${slider.value}`
+let mouseDown = false
