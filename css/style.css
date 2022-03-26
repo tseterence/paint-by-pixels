@@ -148,9 +148,15 @@ input[type="color"]::-webkit-color-swatch {
   }
   .settings div:nth-child(5) {
     width: 100%;
-    order: -2;
+    order: -4;
   }
   .settings div:nth-child(2) {
+    order: -3;
+  }
+  .settings div:first-child {
+    order: -2;
+  }
+  .settings div:last-child {
     order: -1;
   }
   .btnSel, .circlePick {
