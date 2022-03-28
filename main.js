@@ -30,7 +30,7 @@ eraserBtn.addEventListener("click", () => {
 })
 
 clearBtn.addEventListener("click", () => {
-    if (confirm("Are you sure you want to clear the current grid?")){
+    if (confirm("Are you sure you want to clear the grid?")){
         newGrid()
     }
 })
@@ -44,13 +44,13 @@ document.body.onmouseup = () => mouseDown = false
 // draw grid function
 function drawGrid(numRows) {
     for (let i = 0; i < (numRows * numRows); i++){
-        const newDiv = document.createElement("div")
-        newDiv.style.width = `${containerDim / numRows}px`
-        newDiv.style.height = `${containerDim / numRows}px`
-        newDiv.className = "grid"
-        newDiv.addEventListener("mousedown", paint)
-        newDiv.addEventListener("mouseover", paint)
-        container.appendChild(newDiv)
+        const square = document.createElement("div")
+        square.style.width = `${containerDim / numRows}px`
+        square.style.height = `${containerDim / numRows}px`
+        square.className = "grid"
+        square.addEventListener("mousedown", paintSquare)
+        square.addEventListener("mouseover", paintSquare)
+        container.appendChild(square)
     }
 }
 
@@ -71,10 +71,11 @@ function newGrid(){
         rainbowBtn.classList.remove("active")
         eraserBtn.classList.remove("active")
     }
+    rainbowH = -1
 }
 
-// paint function
-function paint(e){
+// paint square function
+function paintSquare(e){
     if ((e.type === "mousedown") || (mouseDown)){
         if (colorMode === "picker"){
             e.target.style.background = `${colorPicker.value}`
