@@ -79,7 +79,7 @@ function paint(e){
         if (colorMode === "picker"){
             e.target.style.background = `${colorPicker.value}`
         } else if (colorMode === "rainbow"){
-            e.target.style.background = randomRGB()
+            e.target.style.background = rainbowHSL()
         } else if (colorMode === "eraser"){
             e.target.style.background = "white"
         }
@@ -92,6 +92,15 @@ function randomRGB(){
     const randomG = Math.floor(Math.random() * 256)
     const randomB = Math.floor(Math.random() * 256)
     return `rgb(${randomR}, ${randomG}, ${randomB})`
+}
+
+// truly "rainbow" hsl generator
+const rainbowHSelector = [0, 39, 60, 120, 240, 275, 300]
+let rainbowH = -1
+function rainbowHSL(){
+    rainbowH += 1
+    rainbowH %= 7
+    return `hsl(${rainbowHSelector[rainbowH]}, 100%, 50%)`
 }
 
 // toggle buttons function
