@@ -199,8 +199,4 @@ input[type="color"]::-webkit-color-swatch {
   button {
     font-size: 14px;
   }
-  button {
-    width: 90px;
-    height: 30px;
-  }
 }
